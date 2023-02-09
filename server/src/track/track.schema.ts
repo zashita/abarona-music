@@ -17,10 +17,16 @@ export class Track {
     @Prop()
     format: string;
 
+    @Prop()
 
+    lyrics: string;
+
+    @Prop()
+
+    cover: string;
 
     @Prop()
     listens: number;
 }
 
-export const CatSchema = SchemaFactory.createForClass(Track);
+export const TrackSchema = SchemaFactory.createForClass(Track);
