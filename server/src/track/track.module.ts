@@ -4,6 +4,7 @@ import {TrackService} from "./track.service";
 import {MongooseModule} from "@nestjs/mongoose";
 import {Track, TrackSchema} from "./track.schema";
 import {Album, AlbumSchema} from "../album/schemas/album.schema";
+import {FileService} from "../file/file.service";
 
 @Module({
     imports: [
@@ -11,6 +12,6 @@ import {Album, AlbumSchema} from "../album/schemas/album.schema";
         MongooseModule.forFeature([{name: Album.name, schema: AlbumSchema}])
     ],
     controllers:[TrackController],
-    providers:[TrackService]
+    providers:[TrackService, FileService]
 })
 export class TrackModule{};
