@@ -1,4 +1,4 @@
-import {Body, Controller, Delete, Param, Post, UploadedFiles, UseInterceptors} from "@nestjs/common";
+import {Body, Controller, Delete, Param, Post, Query, UploadedFiles, UseInterceptors} from "@nestjs/common";
 import {Get} from "@nestjs/common";
 import {TrackService} from "./track.service";
 import {CreateTrackDto} from "./dto/create-track.dto";
@@ -24,8 +24,14 @@ export class TrackController{
         return this.trackService.create(dto, files.audio[0], files.cover[0]);
     }
     @Get()
-    async getAll(){
-    return this.trackService.getAll();
+    async getAll(@Query('count') count: number,
+                 @Query('offset') offset: number){
+    return this.trackService.getAll(count, offset);
+    }
+
+    @Get('/search')
+    search(@Query('query') query:string){
+        return this.trackService.search(query)
     }
 
     @Get(`:id`)
@@ -37,5 +43,10 @@ export class TrackController{
     delete(@Param(`id`) id: ObjectId){
         return this.trackService.delete(id);
         }
+
+    @Post('/listen/:id')
+    listen(@Param('id') id: ObjectId){
+        return this.trackService.listen(id);
+    }
 
 }
