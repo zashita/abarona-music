@@ -21,7 +21,7 @@ export class TrackController{
         ]))
     create(@UploadedFiles() files, @Body() dto: CreateTrackDto){
         console.log(files.audio[0])
-        return this.trackService.create(dto, files.cover[0], files.audio[0]);
+        return this.trackService.create(dto, files.audio[0], files.cover[0]);
     }
     @Get()
     async getAll(){

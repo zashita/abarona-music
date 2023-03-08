@@ -14,7 +14,7 @@ export class FileService{
 
     createFile(type: FileType, file): string{
         try{
-            const fileExtension = file.originalname.split(`.`).pop()
+            const fileExtension = file.originalname.split(`.`).pop();
             const fileName = uuid.v4() + `.` + fileExtension;
             const filePath = path.resolve(__dirname, `..`, `static`, type)
             if(!fs.existsSync(filePath)){

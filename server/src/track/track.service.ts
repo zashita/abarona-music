@@ -12,10 +12,10 @@ export class TrackService{
     constructor(@InjectModel(Track.name) private trackModel: Model<TrackDocument>,
                 private fileService: FileService) {}
 
-    async create(dto: CreateTrackDto, cover, audio): Promise<Track>{
-        const audioPath = this.fileService.createFile(FileType.AUDIO, audio);
+    async create(dto: CreateTrackDto, audio, cover): Promise<Track>{
         const coverPath = this.fileService.createFile(FileType.IMAGE, cover)
-        const track = await this.trackModel.create({...dto, listens: 0, cover: coverPath, audio: audioPath})
+        const audioPath = this.fileService.createFile(FileType.AUDIO, audio)
+        const track = await this.trackModel.create({...dto, listens: 0, audio: audioPath, cover: coverPath})
         return track;
     }
 

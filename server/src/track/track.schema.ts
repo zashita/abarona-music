@@ -28,7 +28,12 @@ export class Track {
     cover: string;
 
     @Prop()
+    audio: string;
+
+    @Prop()
     listens: number;
+
+
 }
 
 export const TrackSchema = SchemaFactory.createForClass(Track);
