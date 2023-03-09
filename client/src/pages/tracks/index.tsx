@@ -4,11 +4,11 @@ import MainLayout from "@/layouts/MainLayout";
 
 const Index = () => {
     return (
-        <>
             <MainLayout>
-
+                <h1>Треки пользователей</h1>
             </MainLayout>
-        </>
+
+
     );
 };
 
