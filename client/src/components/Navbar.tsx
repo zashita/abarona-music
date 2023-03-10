@@ -13,15 +13,16 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import CloudDoneIcon from '@mui/icons-material/CloudDone';
 import {router} from "next/client";
 import {useRouter} from "next/router";
 
-const drawerWidth = 300;
+export const drawerWidth = 300;
 
 const menuPages = [
-    {text: 'Uploaded tracks', href: '/tracks'},
-    {text: 'Verified tracks', href: '/verified'},
     {text: 'Main', href: '/'},
+    {text: 'Verified tracks', href: '/verified'},
+    {text: 'Uploaded tracks', href: '/tracks'},
 ]
 
 export default function Navbar() {
@@ -31,11 +32,11 @@ export default function Navbar() {
             <CssBaseline />
             <AppBar
                 position="fixed"
-                sx={{ width: `calc(100% - ${drawerWidth}px)`, mr: `${drawerWidth}px` , bgcolor: '#ff920b'}}
+                sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` , bgcolor: '#ff920b'}}
             >
-                <Toolbar>
+                <Toolbar style={{width: '100%'}}>
                     <Typography variant="h6" noWrap component="div">
-                        Permanent drawer
+                        ZASHITA music
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -52,11 +53,12 @@ export default function Navbar() {
                     flexShrink: 0,
                     '& .MuiDrawer-paper': {
                         width: drawerWidth,
-                        boxSizing: 'border-box',
+                        bgcolor: '#ff920b',
+                        border: 0,
                     },
                 }}
                 variant="permanent"
-                anchor="right"
+                anchor="left"
             >
                 <Toolbar />
                 <Divider />
@@ -65,7 +67,8 @@ export default function Navbar() {
                         <ListItem button key={href} onClick={() => router.push(href)}>
                             <ListItemButton>
                                 <ListItemIcon>
-                                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                                    {index % 2 === 0 ? <InboxIcon /> : <CloudDoneIcon />}
+                                    {}
                                 </ListItemIcon>
                                 <ListItemText primary={text} />
                             </ListItemButton>
