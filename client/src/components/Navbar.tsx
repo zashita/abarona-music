@@ -64,7 +64,7 @@ export default function Navbar() {
                 <Divider />
                 <List  sx={{ bgcolor: '#ff920b', p: 3 }}>
                     {menuPages.map(({text, href}, index) => (
-                        <ListItem button key={href} onClick={() => router.push(href)}>
+                        <ListItem onClick={() => router.push(href)}>
                             <ListItemButton>
                                 <ListItemIcon>
                                     {index % 2 === 0 ? <InboxIcon /> : <CloudDoneIcon />}
@@ -78,7 +78,7 @@ export default function Navbar() {
                 <Divider />
                 <List sx={{ bgcolor: '#ff920b', p: 3 }}>
                     {['Upload track', 'Liked'].map((text, index) => (
-                        <ListItem key={text} disablePadding>
+                        <ListItem key={text}>
                             <ListItemButton>
                                 <ListItemIcon>
                                     {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
