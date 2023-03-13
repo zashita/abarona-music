@@ -25,6 +25,11 @@ const menuPages = [
     {text: 'Uploaded tracks', href: '/tracks'},
 ]
 
+const subMenuPages = [
+    {text: 'Upload track', href: '/tracks/create'},
+    {text: 'Liked', href: ''}
+]
+
 export default function Navbar() {
     const router = useRouter();
     return (
@@ -77,8 +82,8 @@ export default function Navbar() {
                 </List>
                 <Divider />
                 <List sx={{ bgcolor: '#ff920b', p: 3 }}>
-                    {['Upload track', 'Liked'].map((text, index) => (
-                        <ListItem key={text}>
+                    {subMenuPages.map(({text, href}, index) => (
+                        <ListItem key={index} onClick={()=> router.push(href)}>
                             <ListItemButton>
                                 <ListItemIcon>
                                     {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
