@@ -6,10 +6,15 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
+export interface IStepperProp{
+    activeStep: number;
+    setActiveStep: Function;
+}
+
 const steps = ['Complete the track info form', 'Upload audio and video'];
 
-export default function CustomStepper() {
-    const [activeStep, setActiveStep] = React.useState(0);
+export default function CustomStepper(props: IStepperProp) {
+    const {activeStep, setActiveStep} = props;
     const [skipped, setSkipped] = React.useState(new Set<number>());
 
     const isStepOptional = (step: number) => {
@@ -26,12 +31,12 @@ export default function CustomStepper() {
             newSkipped.delete(activeStep);
         }
 
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        setActiveStep((prevActiveStep: number) => prevActiveStep + 1);
         setSkipped(newSkipped);
     };
 
     const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+        setActiveStep((prevActiveStep: number) => prevActiveStep - 1);
     };
 
     const handleSkip = () => {
