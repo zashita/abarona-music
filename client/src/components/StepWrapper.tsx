@@ -1,17 +1,36 @@
 import React from 'react';
-import CustomStepper from "@/components/Stepper";
+import {Container, Grid, Step, StepLabel, Stepper} from "@mui/material";
 
-const StepWrapper = () => {
-    const [activeStep, setActiveStep] = React.useState(0);
+export interface IStepWrapperProps{
+    children: any;
+    activeStep: number
+}
+
+export const steps = ['Complete the track information form', 'Upload audio & cover']
+const StepWrapper = (props: IStepWrapperProps) => {
+
     return (
-        <>
-            <CustomStepper activeStep={activeStep} setActiveStep={setActiveStep}/>
-            {activeStep===0?
-                <p>ШАГ НОМЕР 1</p>
-                :
-                <p>ШАГ НОМЕР 2</p>}
+        <Container>
+            <Grid mb = '60px'>
+                <Stepper activeStep={props.activeStep}>
+                    {steps.map((step, index)=>{
+                        return(
+                            <Step
+                                key={index}
+                                completed={props.activeStep > index}
+                                >
+                                <StepLabel color={'white'}>{step}</StepLabel>
+                            </Step>
+                        )
+                    })}
+                </Stepper>
+            </Grid>
+            <Grid>
+                {props.children}
+            </Grid>
+        </Container>
 
-        </>
+
 
     );
 };
