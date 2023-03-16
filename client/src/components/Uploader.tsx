@@ -35,7 +35,8 @@ const Uploader:React.FC<IUploaderProps> = ({fileType, setFile, file}) => {
                 <Grid
                     onClick={input_click}
                     sx={{width: '95%', height: '50px', margin: '0',
-                        borderRadius: '10px', border: '0.5px solid black'}}
+                        borderRadius: '10px', border: '0.5px solid black',
+                        backgroundColor: '#4f4f4f'}}
                     display={'flex'}
                     alignItems={'center'}
                     justifyContent = 'center'>
@@ -52,7 +53,8 @@ const Uploader:React.FC<IUploaderProps> = ({fileType, setFile, file}) => {
             <Grid
                 onClick={clear}
                 sx={{width: '35%', height: '25px',
-                    borderRadius: '10px', border: '0.5px solid black'}}
+                    borderRadius: '7px', border: '0.5px solid black',
+                    backgroundColor: '#4f4f4f'}}
                 display={'flex'}
                 alignItems={'center'}
                 justifyContent = {'center'}

@@ -27,9 +27,28 @@ const Create = () => {
                 <Container>
                     {activeStep === 0?
                         <Grid display={'flex'} direction={'column'} rowGap={2}>
-                            <TextField placeholder={"Track name"}></TextField>
-                            <TextField placeholder={'Track author'}></TextField>
-                            <TextField placeholder={'Track lyrics'}></TextField>
+                            <TextField
+                                placeholder={"Track name"}
+                                sx={{color: 'white', backgroundColor: '#4f4f4f',
+                                borderRadius: '5px',
+                                    '& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input':{
+                                    color: 'white'
+                                    }}}
+                            ></TextField>
+                            <TextField placeholder={'Track author'}
+                                       sx={{color: 'white', backgroundColor: '#4f4f4f',
+                                           borderRadius: '5px',
+                                           '& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input':{
+                                           color: 'white'
+                                       }}}>
+                            </TextField>
+                            <TextField placeholder={'Track lyrics'}
+                                       sx={{color: 'white', backgroundColor: '#4f4f4f',
+                                           borderRadius: '5px',
+                                           '& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input':{
+                                               color: 'white'
+                                           }}}>
+                            </TextField>
 
 
                         </Grid>:
