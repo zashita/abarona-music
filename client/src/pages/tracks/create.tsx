@@ -2,8 +2,11 @@ import React, {useState} from 'react';
 import MainLayout from "@/layouts/MainLayout";
 import StepWrapper, {steps} from "@/components/StepWrapper";
 import {Button, Container, Grid, TextField} from "@mui/material";
+import Uploader from "@/components/Uploader";
 
 const Create = () => {
+    const [audio, setAudio] = useState(null)
+    const [image, setImage] = useState(null)
     const [activeStep, setActiveStep] = useState(0)
     const forward = () =>{
         setActiveStep((prevState) => {
@@ -30,7 +33,10 @@ const Create = () => {
 
 
                         </Grid>:
-                        <h1>loading</h1>
+                        <Grid>
+                            <Uploader fileType={'audio'} file={audio} setFile={setAudio}/>
+                            <Uploader fileType={'image'} setFile={setImage} file={image}/>
+                        </Grid>
 
 
                     }

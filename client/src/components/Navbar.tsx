@@ -37,7 +37,7 @@ export default function Navbar() {
             <CssBaseline />
             <AppBar
                 position="fixed"
-                sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` , bgcolor: '#ff920b'}}
+                sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` , bgcolor: '#1976d2'}}
             >
                 <Toolbar style={{width: '100%'}}>
                     <Typography variant="h6" noWrap component="div">
@@ -58,7 +58,7 @@ export default function Navbar() {
                     flexShrink: 0,
                     '& .MuiDrawer-paper': {
                         width: drawerWidth,
-                        bgcolor: '#ff920b',
+                        bgcolor: '#1976d2',
                         border: 0,
                     },
                 }}
@@ -67,7 +67,7 @@ export default function Navbar() {
             >
                 <Toolbar />
                 <Divider />
-                <List  sx={{ bgcolor: '#ff920b', p: 3 }}>
+                <List  sx={{ bgcolor: '#1976d2', p: 3 }}>
                     {menuPages.map(({text, href}, index) => (
                         <ListItem onClick={() => router.push(href)}>
                             <ListItemButton>
@@ -81,7 +81,7 @@ export default function Navbar() {
                     ))}
                 </List>
                 <Divider />
-                <List sx={{ bgcolor: '#ff920b', p: 3 }}>
+                <List sx={{ bgcolor: '#1976d2', p: 3 }}>
                     {subMenuPages.map(({text, href}, index) => (
                         <ListItem key={index} onClick={()=> router.push(href)}>
                             <ListItemButton>
