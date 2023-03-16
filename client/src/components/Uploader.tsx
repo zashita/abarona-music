@@ -43,7 +43,12 @@ const Uploader:React.FC<IUploaderProps> = ({fileType, setFile, file}) => {
                         <Typography
                             variant={'h5'}
                             color={'black'}>
-                            Upload track {fileType}
+                            {
+                                file!==null?
+                                file.name:
+                                    `Upload track ${fileType}`
+                            }
+
                         </Typography>
 
 
