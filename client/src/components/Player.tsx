@@ -7,7 +7,7 @@ import VolumeUp from '@mui/icons-material/VolumeUp';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
-import {ITrack} from "@/interfaces/track";
+import {ITrack} from "@/types/track";
 import PauseCircleIcon from '@mui/icons-material/PauseCircle';
 import {Grid} from "@mui/material";
 import Typography from "@mui/material/Typography";

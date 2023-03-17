@@ -1,7 +1,7 @@
 import React from 'react';
 import MainLayout from "@/layouts/MainLayout";
 import {Grid} from "@mui/material";
-import {ITrack} from "@/interfaces/track";
+import {ITrack} from "@/types/track";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 

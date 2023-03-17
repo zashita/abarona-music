@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
-import {ITrack} from "@/interfaces/track";
+import {ITrack} from "@/types/track";
 import TrackListItem from "@/components/TrackListItem";
 export interface ITrackListProps {
     tracks: ITrack[];

@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
-import {ITrack} from "@/interfaces/track";
+import {ITrack} from "@/types/track";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from '@mui/icons-material/Pause';
 import InfoIcon from '@mui/icons-material/Info';
