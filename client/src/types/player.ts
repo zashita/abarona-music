@@ -2,7 +2,7 @@ import {ITrack} from "@/types/track";
 
 export interface IPlayer {
   current: ITrack | null;
-  paused: boolean;
+  pause: boolean;
   volume: number;
   duration: number;
   currentTime: number;

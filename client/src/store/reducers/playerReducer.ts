@@ -3,7 +3,7 @@ import {Context, createWrapper, HYDRATE} from "next-redux-wrapper";
 import {createStore, Store} from "redux";
 
 export const initialState = {
-    pause: false,
+    pause: true,
     volume: 50,
     duration: 0,
     current: null,
@@ -12,6 +12,9 @@ export const initialState = {
 export const playerReducer = (state = initialState, action: PlayerAction) =>{
     switch (action.type){
 
+        case PlayerActionTypes.PLAY:{
+            return {...state, pause: false}
+        }
 
         case PlayerActionTypes.PAUSE:{
             return {...state, pause: true}
