@@ -4,7 +4,7 @@ import {createStore, Store} from "redux";
 
 export const initialState = {
     pause: true,
-    volume: 50,
+    volume: 30,
     duration: 0,
     current: null,
     currentTime: 0,
