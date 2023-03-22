@@ -32,7 +32,7 @@ const track: ITrack = {
         "lko hlo hlo hlo hlo hloh lo hlo hlo hloh loh " +
         "lo ho hlo hloh loh loh loh loh loh loh loh loh ]l",
     cover: "image/f05d8d39-06b4-4cfe-90bb-2e8cd44188ac.jpg",
-    audio: "http://localhost:5000/audio/9b94de0e-0f45-411f-98be-1aba80255db1.mp3",
+    audio: "http://localhost:5000/audio/e47a4b9d-e830-4fbf-885f-cbf5e77618e0.mp3",
     listens: 0,
     _id: "640ad92a751c84e979e5d104",
 }
@@ -46,12 +46,20 @@ export default function Player(props: ITrackItem) {
             audio = new Audio()
             audio.src = track.audio
             audio.volume = volume / 100;
+            audio.onloadedmetadata = () => {
+                setDuration(audio.duration)
+            }
+
+            audio.ontimeupdate = () =>{
+                setCurrentTime(audio.currentTime)
+            }
+
         }
     },[])
 
 
     const {pause, currentTime, duration, current, volume} = useTypeSelector(state => state.player)
-    const {pauseTrack, playTrack, setVolume} = useActions()
+    const {pauseTrack, playTrack, setVolume, setCurrentTime, setDuration} = useActions()
 
     const play = () =>{
         if(pause){
@@ -69,10 +77,19 @@ export default function Player(props: ITrackItem) {
     }
 
 
+    const changeCurrentTime = (e: React.ChangeEvent<HTMLInputElement>) =>{
+        setCurrentTime(Number(e.target.value))
+        audio.currentTime = Number(e.target.value);
+    }
+
+
+
+
+
 
     return (
         <Grid width={'100%'}>
-            <Stack direction={'row'} width={'100%'} spacing={'25%'} height={'80px'}>
+            <Stack direction={'row'} width={'100%'} spacing={'15%'} height={'80px'}>
                 <Stack direction = 'row' spacing={2} ml = {2} mt = {2}>
                     <img src={track.cover} alt={'track cover'}/>
                     <Stack direction = 'column'>
@@ -98,13 +115,29 @@ export default function Player(props: ITrackItem) {
                     </IconButton>
                     <SkipNextIcon sx={{width: '30px', height: '30px'}} htmlColor={'#fff'}/>
                 </Stack>
-                <Slider max={45} defaultValue={30} aria-label="Disabled slider"/>
+                <Stack direction={'row'}>
+                    <Typography>
+                        {/*{Math.floor(currentTime / 60)} : {(currentTime % 60)}*/}
+                    </Typography>
+                    <ProgressBar
+                        current={currentTime}
+                        max = {duration}
+                        onChange={changeCurrentTime}
+                        variant={'time'}/>
+                    <Typography>
+                        {/*{Math.floor(duration / 60)} : {(duration % 60)}*/}
+                    </Typography>
+                </Stack>
+
 
             </Stack>
             <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center" width= '200px'>
                 <VolumeUp htmlColor={'#fff'}/>
-                <ProgressBar current={volume} max={100} onChange={changeVolume}/>
-
+                <ProgressBar
+                    current={volume}
+                    max={100}
+                    onChange={changeVolume}
+                    variant={'volume'}/>
             </Stack>
             </Stack>
         </Grid>
