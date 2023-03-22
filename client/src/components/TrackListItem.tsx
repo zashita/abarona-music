@@ -9,6 +9,9 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from '@mui/icons-material/Pause';
 import InfoIcon from '@mui/icons-material/Info';
 import {useRouter} from "next/router";
+import {SERVER_URL} from "@/server_url";
+import {useActions} from "@/hooks/useActions";
+import IconButton from "@mui/material/IconButton";
 
 export interface ITrackItem{
     track: ITrack;
@@ -17,7 +20,13 @@ export interface ITrackItem{
 
 const TrackListItem = (props: ITrackItem) => {
     const {track, active = false} = props;
+    const {pauseTrack, playTrack, setCurrent} = useActions()
     const router = useRouter();
+    const play = (event: any) =>{
+        event.stopPropagation()
+        setCurrent(track)
+        playTrack()
+    }
     return (
         <Card sx={{ display: 'flex' , bgcolor: '#3b3b3b', marginBottom: '10px', height: '50px'}} key={track._id}>
             <Box
@@ -29,15 +38,19 @@ const TrackListItem = (props: ITrackItem) => {
 
 
             >
-                {
-                    active?<PauseIcon htmlColor={'#fff'}/>:<PlayArrowIcon htmlColor={'#fff'}/>
-                }
+                <IconButton
+                onClick={play}>
+                    {
+                        active?<PauseIcon htmlColor={'#fff'}/>:<PlayArrowIcon htmlColor={'#fff'}/>
+                    }
+                </IconButton>
+
             </Box>
 
             <CardMedia
                 component="img"
                 sx={{ width: '50px' ,marginRight: '100px'}}
-                image={'../server/dist/static/image/'+ track.cover}
+                image={SERVER_URL+ track.cover}
                 alt="Армянская обложка"
             />
             <Box sx={{ display: 'flex', flexDirection: 'column'}}>

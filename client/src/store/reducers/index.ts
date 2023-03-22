@@ -2,10 +2,12 @@ import {CombinedState, combineReducers} from "redux";
 import {playerReducer} from "@/store/reducers/playerReducer";
 import {HYDRATE} from "next-redux-wrapper";
 import {PlayerAction} from "@/types/player";
+import {trackReducer} from "@/store/reducers/trackResucer";
 
 
 const rootReducer = combineReducers({
     player: playerReducer,
+    track: trackReducer
 })
 export const reducer = (state: any, action: any) => {
     if (action.type === HYDRATE) {

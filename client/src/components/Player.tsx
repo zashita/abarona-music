@@ -16,50 +16,51 @@ import {useTypeSelector} from "@/hooks/useTypeSelector";
 import {useActions} from "@/hooks/useActions";
 import {useEffect} from "react";
 import ProgressBar from "@/components/ProgressBar";
+import {SERVER_URL} from "@/server_url";
 
 export interface ITrackItem{
     track: ITrack;
     active?: boolean;
 }
 
-const track: ITrack = {
-    name: "Velich",
-    author: "Daun",
-    lyrics: "я памятаю свое риднэ сило" +
-        "loh loh loh loh loh loh loh loh loh loh " +
-        "lo hlo hlo hl ohloh loh loh loh loh loh l]l]" +
-        "lo hloh loh loh loh loh loh loh loh loh loh " +
-        "lko hlo hlo hlo hlo hloh lo hlo hlo hloh loh " +
-        "lo ho hlo hloh loh loh loh loh loh loh loh loh ]l",
-    cover: "image/f05d8d39-06b4-4cfe-90bb-2e8cd44188ac.jpg",
-    audio: "http://localhost:5000/audio/e47a4b9d-e830-4fbf-885f-cbf5e77618e0.mp3",
-    listens: 0,
-    _id: "640ad92a751c84e979e5d104",
-}
+
 let audio: any;
 
 
 export default function Player(props: ITrackItem) {
+    const {pause, currentTime, duration, current, volume} = useTypeSelector(state => state.player)
+    const {pauseTrack, playTrack, setVolume, setCurrentTime, setDuration} = useActions()
 
     useEffect(()=>{
         if(!audio) {
             audio = new Audio()
-            audio.src = track.audio
+
+        }else{
+            setAudio();
+            play();
+        }
+    },[current])
+
+    const setAudio = () =>{
+        if(current) {
+            // @ts-ignore
+            audio.src = SERVER_URL + current.audio;
+            console.log(audio.src);
             audio.volume = volume / 100;
             audio.onloadedmetadata = () => {
                 setDuration(audio.duration)
             }
 
-            audio.ontimeupdate = () =>{
+            audio.ontimeupdate = () => {
                 setCurrentTime(audio.currentTime)
             }
-
+        } else {
+            return null
         }
-    },[])
+    }
 
 
-    const {pause, currentTime, duration, current, volume} = useTypeSelector(state => state.player)
-    const {pauseTrack, playTrack, setVolume, setCurrentTime, setDuration} = useActions()
+
 
     const play = () =>{
         if(pause){
@@ -87,14 +88,18 @@ export default function Player(props: ITrackItem) {
 
 
 
+
+
+    // @ts-ignore
     return (
         <Grid width={'100%'}>
             <Stack direction={'row'} width={'100%'} spacing={'15%'} height={'80px'}>
                 <Stack direction = 'row' spacing={2} ml = {2} mt = {2}>
-                    <img src={track.cover} alt={'track cover'}/>
+
+                    <img src={SERVER_URL + current?.cover} alt={'track cover'}/>
                     <Stack direction = 'column'>
-                        <Typography variant = 'subtitle1' color={'#fff'}>{track.name}</Typography>
-                        <Typography variant = 'subtitle2' color = {'#a9a9a9'}>{track.author}</Typography>
+                        <Typography variant = 'subtitle1' color={'#fff'}>{current?.name}</Typography>
+                        <Typography variant = 'subtitle2' color = {'#a9a9a9'}>{current?.author}</Typography>
                     </Stack>
 
                 </Stack>

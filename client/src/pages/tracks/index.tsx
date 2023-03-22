@@ -2,149 +2,31 @@ import React from 'react';
 import Navbar from "@/components/Navbar";
 import MainLayout from "@/layouts/MainLayout";
 import TrackList from "@/components/TrackList";
+import {useTypeSelector} from "@/hooks/useTypeSelector";
+import {steps} from "@/components/StepWrapper";
+import Typography from "@mui/material/Typography";
+import {NextThunkDispatch, wrapper} from "@/store";
+import {RootState} from "@/store/reducers";
+import {GetServerSideProps, GetServerSidePropsContext, GetServerSidePropsResult} from "next";
+import {Store} from "redux";
+import {ParsedUrlQuery} from "querystring";
+import {fetchTracks} from "@/store/actions-creators/track";
 
-const expample = [
-    {
-        name: "Velich",
-        author: "Daun",
-        lyrics: "я памятаю свое риднэ сило",
-        cover: "image/f05d8d39-06b4-4cfe-90bb-2e8cd44188ac.jpg",
-        audio: "audio/4dc3502a-347d-49c9-b10a-b8c80e05cc99.mp3",
-        listens: 0,
-        _id: "640ad92a751c84e979e5d104",
-    },
-    {
-        name: "Velich",
-        author: "Daun",
-        lyrics: "я памятаю свое риднэ сило",
-        cover: "image/f05d8d39-06b4-4cfe-90bb-2e8cd44188ac.jpg",
-        audio: "audio/4dc3502a-347d-49c9-b10a-b8c80e05cc99.mp3",
-        listens: 0,
-        _id: "640ad92a751c84e979e5d104",
-    },
-    {
-        name: "Velich",
-        author: "Daun",
-        lyrics: "я памятаю свое риднэ сило",
-        cover: "image/f05d8d39-06b4-4cfe-90bb-2e8cd44188ac.jpg",
-        audio: "audio/4dc3502a-347d-49c9-b10a-b8c80e05cc99.mp3",
-        listens: 0,
-        _id: "640ad92a751c84e979e5d104",
-    },
-    {
-        name: "Velich",
-        author: "Daun",
-        lyrics: "я памятаю свое риднэ сило",
-        cover: "image/f05d8d39-06b4-4cfe-90bb-2e8cd44188ac.jpg",
-        audio: "audio/4dc3502a-347d-49c9-b10a-b8c80e05cc99.mp3",
-        listens: 0,
-        _id: "640ad92a751c84e979e5d104",
-    },
-    {
-        name: "Velich",
-        author: "Daun",
-        lyrics: "я памятаю свое риднэ сило",
-        cover: "image/f05d8d39-06b4-4cfe-90bb-2e8cd44188ac.jpg",
-        audio: "audio/4dc3502a-347d-49c9-b10a-b8c80e05cc99.mp3",
-        listens: 0,
-        _id: "640ad92a751c84e979e5d104",
-    },
-    {
-        name: "Velich",
-        author: "Daun",
-        lyrics: "я памятаю свое риднэ сило",
-        cover: "image/f05d8d39-06b4-4cfe-90bb-2e8cd44188ac.jpg",
-        audio: "audio/4dc3502a-347d-49c9-b10a-b8c80e05cc99.mp3",
-        listens: 0,
-        _id: "640ad92a751c84e979e5d104",
-    },
-    {
-        name: "Velich",
-        author: "Daun",
-        lyrics: "я памятаю свое риднэ сило",
-        cover: "image/f05d8d39-06b4-4cfe-90bb-2e8cd44188ac.jpg",
-        audio: "audio/4dc3502a-347d-49c9-b10a-b8c80e05cc99.mp3",
-        listens: 0,
-        _id: "640ad92a751c84e979e5d104",
-    },
-    {
-        name: "Velich",
-        author: "Daun",
-        lyrics: "я памятаю свое риднэ сило",
-        cover: "image/f05d8d39-06b4-4cfe-90bb-2e8cd44188ac.jpg",
-        audio: "audio/4dc3502a-347d-49c9-b10a-b8c80e05cc99.mp3",
-        listens: 0,
-        _id: "640ad92a751c84e979e5d104",
-    },
-    {
-        name: "Velich",
-        author: "Daun",
-        lyrics: "я памятаю свое риднэ сило",
-        cover: "image/f05d8d39-06b4-4cfe-90bb-2e8cd44188ac.jpg",
-        audio: "audio/4dc3502a-347d-49c9-b10a-b8c80e05cc99.mp3",
-        listens: 0,
-        _id: "640ad92a751c84e979e5d104",
-    },
-    {
-        name: "Velich",
-        author: "Daun",
-        lyrics: "я памятаю свое риднэ сило",
-        cover: "image/f05d8d39-06b4-4cfe-90bb-2e8cd44188ac.jpg",
-        audio: "audio/4dc3502a-347d-49c9-b10a-b8c80e05cc99.mp3",
-        listens: 0,
-        _id: "640ad92a751c84e979e5d104",
-    },
-    {
-        name: "Velich",
-        author: "Daun",
-        lyrics: "я памятаю свое риднэ сило",
-        cover: "image/f05d8d39-06b4-4cfe-90bb-2e8cd44188ac.jpg",
-        audio: "audio/4dc3502a-347d-49c9-b10a-b8c80e05cc99.mp3",
-        listens: 0,
-        _id: "640ad92a751c84e979e5d104",
-    },
-    {
-        name: "Velich",
-        author: "Daun",
-        lyrics: "я памятаю свое риднэ сило",
-        cover: "image/f05d8d39-06b4-4cfe-90bb-2e8cd44188ac.jpg",
-        audio: "audio/4dc3502a-347d-49c9-b10a-b8c80e05cc99.mp3",
-        listens: 0,
-        _id: "640ad92a751c84e979e5d104",
-    },
-    {
-        name: "Velich",
-        author: "Daun",
-        lyrics: "я памятаю свое риднэ сило",
-        cover: "image/f05d8d39-06b4-4cfe-90bb-2e8cd44188ac.jpg",
-        audio: "audio/4dc3502a-347d-49c9-b10a-b8c80e05cc99.mp3",
-        listens: 0,
-        _id: "640ad92a751c84e979e5d104",
-    },
-    {
-        name: "Velich",
-        author: "Daun",
-        lyrics: "я памятаю свое риднэ сило",
-        cover: "image/f05d8d39-06b4-4cfe-90bb-2e8cd44188ac.jpg",
-        audio: "audio/4dc3502a-347d-49c9-b10a-b8c80e05cc99.mp3",
-        listens: 0,
-        _id: "640ad92a751c84e979e5d104",
-    },
-    {
-        name: "Velich",
-        author: "Daun",
-        lyrics: "я памятаю свое риднэ сило",
-        cover: "image/f05d8d39-06b4-4cfe-90bb-2e8cd44188ac.jpg",
-        audio: "audio/4dc3502a-347d-49c9-b10a-b8c80e05cc99.mp3",
-        listens: 0,
-        _id: "640ad92a751c84e979e5d104",
-    },
-]
+
 
 const Index = () => {
+    const {tracks, error} = useTypeSelector(state => state.track);
+    if (error) {
+        return (
+            <MainLayout>
+                <Typography>{error}</Typography>
+            </MainLayout>
+        )
+    }
+    console.log(tracks)
     return (
             <MainLayout>
-                <TrackList tracks={expample}/>
+                <TrackList tracks={tracks}/>
             </MainLayout>
 
 
@@ -152,3 +34,12 @@ const Index = () => {
 };
 
 export default Index;
+
+
+export const getServerSideProps = wrapper.getServerSideProps((store) => async () => {
+    const dispatch = store.dispatch as NextThunkDispatch;
+    await dispatch(await fetchTracks());
+    return {
+        props: {},
+    };
+});
