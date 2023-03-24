@@ -3,27 +3,22 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import {useRouter} from "next/router";
+import {Grid} from "@mui/material";
+import {Fragment} from "react";
+
+export interface MenuProps {
+    trackID: string;
+}
 
 const options = [
-    'None',
-    'Atria',
-    'Callisto',
-    'Dione',
-    'Ganymede',
-    'Hangouts Call',
-    'Luna',
-    'Oberon',
-    'Phobos',
-    'Pyxis',
-    'Sedna',
-    'Titania',
-    'Triton',
-    'Umbriel',
+    'Track info',
+    'Delete track'
 ];
 
 const ITEM_HEIGHT = 48;
 
-export default function LongMenu() {
+const CustomMenu: React.FC<MenuProps> = ({trackID}) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -32,9 +27,16 @@ export default function LongMenu() {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const router = useRouter();
+
+    const menuItemOnClick = (option: string) => {
+        if(option === 'Track info'){
+            router.push('/tracks/' + trackID);
+        }
+    }
 
     return (
-        <div>
+        <Fragment>
             <IconButton
                 aria-label="more"
                 id="long-button"
@@ -61,11 +63,15 @@ export default function LongMenu() {
                 }}
             >
                 {options.map((option) => (
-                    <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
+                    <MenuItem
+                        key={option}
+                        onClick={() => menuItemOnClick(option)}>
                         {option}
                     </MenuItem>
                 ))}
             </Menu>
-        </div>
+        </Fragment>
     );
 }
+
+export default CustomMenu;

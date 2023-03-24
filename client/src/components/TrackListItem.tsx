@@ -12,6 +12,7 @@ import {useRouter} from "next/router";
 import {SERVER_URL} from "@/server_url";
 import {useActions} from "@/hooks/useActions";
 import IconButton from "@mui/material/IconButton";
+import CustomMenu from "@/components/Menu";
 
 export interface ITrackItem{
     track: ITrack;
@@ -64,11 +65,11 @@ const TrackListItem = (props: ITrackItem) => {
                 </CardContent>
             </Box>
             <Box
-                onClick={() => router.push('/tracks/' + track._id)}
+                // onClick={() => router.push('/tracks/' + track._id)}
                 ml={"600px"}
                 p = {1.5}
             >
-                <InfoIcon htmlColor={'#fff'}/>
+                <CustomMenu trackID={track._id}/>
             </Box>
         </Card>
     );
