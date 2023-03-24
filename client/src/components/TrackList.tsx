@@ -11,13 +11,14 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import {ITrack} from "@/types/track";
 import TrackListItem from "@/components/TrackListItem";
+import {Grid} from "@mui/material";
 export interface ITrackListProps {
     tracks: ITrack[];
 }
 const TrackList = (props: ITrackListProps) => {
 
     return (
-        <>
+        <Grid mb = {'120px'} bgcolor={'#3b3b3b'}>
             <Typography
                 variant={'h3'}
                 color={'#fff'}
@@ -30,7 +31,7 @@ const TrackList = (props: ITrackListProps) => {
                     <TrackListItem track={track} active={false}/>
                 )
             })}
-        </>
+        </Grid>
 
     );
 };

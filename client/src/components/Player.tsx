@@ -83,20 +83,17 @@ export default function Player(props: ITrackItem) {
         audio.currentTime = Number(e.target.value);
     }
 
-
-
-
-
-
-
-
     // @ts-ignore
     return (
         <Grid width={'100%'}>
             <Stack direction={'row'} width={'100%'} spacing={'15%'} height={'80px'}>
                 <Stack direction = 'row' spacing={2} ml = {2} mt = {2}>
 
-                    <img src={SERVER_URL + current?.cover} alt={'track cover'}/>
+                    <img
+                        src={SERVER_URL + current?.cover}
+                        alt={'track cover'}
+                        width={'50px'}
+                        height = {'50px'}/>
                     <Stack direction = 'column'>
                         <Typography variant = 'subtitle1' color={'#fff'}>{current?.name}</Typography>
                         <Typography variant = 'subtitle2' color = {'#a9a9a9'}>{current?.author}</Typography>
