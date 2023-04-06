@@ -27,6 +27,8 @@ const Create = () => {
                     formData.append('lyrics', lyrics.value);
                     formData.append('cover', image);
                     formData.append('audio', audio);
+                    // @ts-ignore
+                    formData.append('liked', false);
                     axios.post(SERVER_URL + 'tracks', formData).then(
                        response => {router.push('/tracks')
                         console.log(formData)}

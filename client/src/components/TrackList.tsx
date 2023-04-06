@@ -18,7 +18,10 @@ export interface ITrackListProps {
 const TrackList = (props: ITrackListProps) => {
 
     return (
-        <Grid mb = {'120px'} bgcolor={'#3b3b3b'}>
+        <Grid
+            mb = {'40px'}
+            bgcolor={'#3b3b3b'}
+            paddingBottom={'80px'}>
             <Typography
                 variant={'h3'}
                 color={'#fff'}

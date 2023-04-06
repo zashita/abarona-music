@@ -33,6 +33,9 @@ export class Track {
     @Prop()
     listens: number;
 
+    @Prop()
+    liked: boolean;
+
 
 }
 
