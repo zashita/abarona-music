@@ -18,16 +18,16 @@ const Index = () => {
     const {tracks, error} = useTypeSelector(state => state.track);
     if (error) {
         return (
-            <MainLayout>
+            <>
                 <Typography>{error}</Typography>
-            </MainLayout>
+            </>
         )
     }
     console.log(tracks)
     return (
-            <MainLayout>
+            <>
                 <TrackList tracks={tracks}/>
-            </MainLayout>
+            </>
 
 
     );

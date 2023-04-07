@@ -17,6 +17,7 @@ import {useActions} from "@/hooks/useActions";
 import {useEffect} from "react";
 import ProgressBar from "@/components/ProgressBar";
 import {SERVER_URL} from "@/server_url";
+import Image from "next/image";
 
 export interface ITrackItem{
     track: ITrack;
@@ -93,7 +94,8 @@ export default function Player(props: ITrackItem) {
                         src={SERVER_URL + current?.cover}
                         alt={'track cover'}
                         width={'50px'}
-                        height = {'50px'}/>
+                        height={'50px'}
+                    />
                     <Stack direction = 'column'>
                         <Typography variant = 'subtitle1' color={'#fff'}>{current?.name}</Typography>
                         <Typography variant = 'subtitle2' color = {'#a9a9a9'}>{current?.author}</Typography>

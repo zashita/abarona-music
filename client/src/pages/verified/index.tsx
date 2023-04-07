@@ -4,9 +4,9 @@ import MainLayout from "@/layouts/MainLayout";
 
 const Index = () => {
     return (
-        <MainLayout>
+        <>
             <h1>Треки</h1>
-        </MainLayout>
+        </>
     );
 };
 

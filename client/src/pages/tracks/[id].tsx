@@ -15,7 +15,7 @@ const TrackInfo = (serverTrack: any) => {
 
 
     return (
-        <MainLayout>
+        <>
             <Grid>
                 <Box
                     margin={'20px auto'}
@@ -32,7 +32,7 @@ const TrackInfo = (serverTrack: any) => {
                 </Box>
                 <Typography>listens: {track.listens}</Typography>
             </Grid>
-        </MainLayout>
+        </>
     );
 };
 

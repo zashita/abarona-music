@@ -48,7 +48,7 @@ const Create = () => {
         });
     }
     return (
-        <MainLayout>
+        <>
             <StepWrapper activeStep={activeStep}>
                 <Container>
                     {activeStep === 0?
@@ -104,7 +104,7 @@ const Create = () => {
                     Next
                 </Button>
             </Grid>
-        </MainLayout>
+        </>
     );
 };
 
