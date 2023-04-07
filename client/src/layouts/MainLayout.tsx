@@ -4,6 +4,8 @@ import {Container} from "@mui/material";
 import {drawerWidth} from "@/components/Navbar";
 import Box from "@mui/material/Box";
 import Player from "@/components/Player";
+import {NextThunkDispatch, wrapper} from "@/store";
+import {fetchTracks} from "@/store/actions-creators/track";
 
 const MainLayout = (props:{children: any}) => {
     return (
@@ -22,3 +24,5 @@ const MainLayout = (props:{children: any}) => {
 };
 
 export default MainLayout;
+
+

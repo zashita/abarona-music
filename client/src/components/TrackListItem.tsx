@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import CardMedia from "@mui/material/CardMedia";
 import Box from "@mui/material/Box";
 import CardContent from "@mui/material/CardContent";
@@ -13,6 +13,9 @@ import {SERVER_URL} from "@/server_url";
 import {useActions} from "@/hooks/useActions";
 import IconButton from "@mui/material/IconButton";
 import CustomMenu from "@/components/Menu";
+import {setCurrentTime} from "@/store/actions-creators/player";
+import {useDispatch} from "react-redux";
+import {useTypeSelector} from "@/hooks/useTypeSelector";
 
 export interface ITrackItem{
     track: ITrack;
@@ -22,10 +25,11 @@ export interface ITrackItem{
 const TrackListItem = (props: ITrackItem) => {
     const {track, active = false} = props;
     const {pauseTrack, playTrack, setCurrent} = useActions()
+    const {current} = useTypeSelector(state => state.player);
     const router = useRouter();
     const play = (event: any) =>{
         event.stopPropagation()
-        setCurrent(track)
+        if(!current) setCurrent(track);
         playTrack()
     }
     return (

@@ -20,7 +20,6 @@ import {SERVER_URL} from "@/server_url";
 import Image from "next/image";
 
 export interface ITrackItem{
-    track: ITrack;
     active?: boolean;
 }
 
@@ -56,7 +55,7 @@ export default function Player(props: ITrackItem) {
                 setCurrentTime(audio.currentTime)
             }
         } else {
-            return null
+            return null;
         }
     }
 
