@@ -29,7 +29,7 @@ const TrackListItem = (props: ITrackItem) => {
     const router = useRouter();
     const play = (event: any) =>{
         event.stopPropagation()
-        if(!current) setCurrent(track);
+        setCurrent(track);
         playTrack()
     }
     return (
@@ -54,12 +54,12 @@ const TrackListItem = (props: ITrackItem) => {
 
             <CardMedia
                 component="img"
-                sx={{ width: '50px' ,marginRight: '100px'}}
+                sx={{ width: '4vw' ,marginRight: '5vw'}}
                 image={SERVER_URL+ track.cover}
-                alt="Армянская обложка"
+                alt=""
             />
             <Box sx={{ display: 'flex', flexDirection: 'column'}}>
-                <CardContent sx={{ flex: '1 0 auto', margin: 0, padding: 0}}>
+                <CardContent sx={{ flex: '1 0 auto', margin: 0, padding: 0, width: '50vw'}}>
                     <Typography component="div" variant="subtitle1" color={'#fff'}>
                         {track.name}
                     </Typography>
@@ -70,7 +70,6 @@ const TrackListItem = (props: ITrackItem) => {
             </Box>
             <Box
                 // onClick={() => router.push('/tracks/' + track._id)}
-                ml={"600px"}
                 p = {1.5}
             >
                 <CustomMenu trackID={track._id}/>

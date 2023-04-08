@@ -86,7 +86,7 @@ export default function Player(props: ITrackItem) {
     // @ts-ignore
     return (
         <Grid width={'100%'}>
-            <Stack direction={'row'} width={'100%'} spacing={'15%'} height={'80px'}>
+            <Stack direction={'row'} width={'100vw'} spacing={'15vw'} height={'15vh'}>
                 <Stack direction = 'row' spacing={2} ml = {2} mt = {2}>
 
                     <img
@@ -95,7 +95,7 @@ export default function Player(props: ITrackItem) {
                         width={'50px'}
                         height={'50px'}
                     />
-                    <Stack direction = 'column'>
+                    <Stack direction = 'column' width={"10vw"}>
                         <Typography variant = 'subtitle1' color={'#fff'}>{current?.name}</Typography>
                         <Typography variant = 'subtitle2' color = {'#a9a9a9'}>{current?.author}</Typography>
                     </Stack>
@@ -103,7 +103,7 @@ export default function Player(props: ITrackItem) {
                 </Stack>
             <Stack direction={'column'} spacing={0}>
                 <Stack direction={'row'}
-                       width={'500px'}
+                       width={'35vw'}
                        justifyContent={'center'}
                        alignItems={'center'} mt={0}
                        spacing={1}
@@ -126,7 +126,8 @@ export default function Player(props: ITrackItem) {
                         current={currentTime}
                         max = {duration}
                         onChange={changeCurrentTime}
-                        variant={'time'}/>
+                        variant={'time'}
+                    />
                     <Typography>
                         {/*{Math.floor(duration / 60)} : {(duration % 60)}*/}
                     </Typography>
@@ -134,7 +135,7 @@ export default function Player(props: ITrackItem) {
 
 
             </Stack>
-            <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center" width= '200px'>
+            <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center" width= '15vw'>
                 <VolumeUp htmlColor={'#fff'}/>
                 <ProgressBar
                     current={volume}
