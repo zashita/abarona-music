@@ -4,7 +4,7 @@ class TrackService{
     async create(track, cover, audio){
         const photoName = FileService.saveFile(cover, 0); // 0 - picture 1 - audio
         const audioName = FileService.saveFile(audio, 1)
-        const newTrack = Track.create({...track, cover: photoName, audio: audioName})
+        const newTrack = Track.create({...track, cover: photoName, audio: audioName, listens: 0})
         return newTrack
     }
 
@@ -25,9 +25,26 @@ class TrackService{
         if(!id){
 
         }else{
-            const deletedTrack = Track.findByIdAndDelete(id)
+            const deletedTrack = await Track.findByIdAndDelete(id)
+            FileService.deleteFile(deletedTrack.audio)
+            FileService.deleteFile(deletedTrack.cover)
             return deletedTrack
         }
+    }
+
+    async listen(id){
+        try{
+            if(!id){
+
+            }else {
+                const track = await Track.findById(id)
+                const updatedTrack = await Track.findByIdAndUpdate(id, {...track, listens: track.listens++}, {new: true})
+                return updatedTrack
+            }
+        } catch (e) {
+            console.log(e)
+        }
+
     }
 
 }

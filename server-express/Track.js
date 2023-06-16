@@ -5,7 +5,8 @@ const Track = new mongoose.Schema({
     author:{type: String, required: true},
     lyrics: {type: String, required: true},
     cover: {type: String, required: true},
-    audio: {type: String, required: true}
+    audio: {type: String, required: true},
+    listens: {type: Number, required: true}
 })
 
 export default mongoose.model('Track', Track)

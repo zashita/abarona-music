@@ -1,5 +1,6 @@
 import * as uuid from 'uuid'
 import * as path from 'path'
+import {deleteFile} from "express-fileupload/lib/utilities.js";
 
 class FileService{
     saveFile(file, type){
@@ -15,6 +16,17 @@ class FileService{
         }
 
 
+    }
+    deleteFile(fileName){
+        try{
+            const filePath = path.resolve(`static/`, fileName);
+            deleteFile(filePath, () => {console.log('file deleted')})
+
+
+        } catch (e) {
+            console.log(e)
+
+        }
     }
 }
 

@@ -6,7 +6,8 @@ const router = new Router();
 router.get('/tracks', TrackController.getAll)
 router.post('/tracks', TrackController.create)
 router.get('/tracks/:id', TrackController.getOne)
-router.delete('/tracks:id', TrackController.deleteTrack)
+router.delete('/tracks/:id', TrackController.deleteTrack)
+router.put('/listen/:id', TrackController.listen)
 
 export default router
 

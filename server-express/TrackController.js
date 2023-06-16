@@ -32,12 +32,23 @@ class TrackController{
     async deleteTrack(req, res){
         try {
             const {id} = req.params
-            const deletedTrack = TrackService.delete(id)
+            const deletedTrack = await TrackService.delete(id)
             res.json(deletedTrack);
         } catch (e) {
 
         }
     }
+
+    async listen(req, res){
+        try{
+            const {id} = req.params
+            const updatedTrack = await TrackService.listen(id)
+            res.json(updatedTrack)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
 }
 
 export default new TrackController()
